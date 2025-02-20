@@ -3,6 +3,8 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 
+import static org.hamcrest.Matchers.*;
+
 public class GoRestAutomation {
 
     private static final String BASE_URL = "https://gorest.co.in/public/v2/";
