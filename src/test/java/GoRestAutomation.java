@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class GoRestAutomation {
 
-    private static final String BASE_URL = "https://gorest.co.in/public/v2/users";
+    private static final String BASE_URL = "https://gorest.co.in/public/v2/";
     private static final String TOKEN = "841f2e7225a0e641fd991af772a706b9637b130964516a0e6376b3e1c0cd0bfb"; // Replace with a valid token
 
     public static void main(String[] args) {
@@ -37,8 +37,8 @@ public class GoRestAutomation {
         System.out.println("\nPOST /users");
 
         JSONObject requestParams = new JSONObject();
-        requestParams.put("name", "Test User");
-        requestParams.put("email", "testuser" + System.currentTimeMillis() + "@example.com");
+        requestParams.put("name", "Satrio Wibisono");
+        requestParams.put("email", "satriowbsn" + System.currentTimeMillis() + "@yopmail.com");
         requestParams.put("gender", "male");
         requestParams.put("status", "active");
 
