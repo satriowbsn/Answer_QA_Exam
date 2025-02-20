@@ -31,6 +31,10 @@ public class GoRestAutomation {
 
         response.prettyPrint();
         System.out.println("Status Code: " + response.getStatusCode());
+        response.then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("size()", greaterThan(0)); // Ensure there are users in the list
     }
 
     public static int createUser() {
@@ -70,6 +74,11 @@ public class GoRestAutomation {
                 .put(BASE_URL + "/users/" + userId);
 
         response.prettyPrint();
+        // Validate response
+        response.then()
+                .statusCode(200)
+                .body("name", equalTo("Updated User"))
+                .body("status", equalTo("inactive"));
         System.out.println("Status Code: " + response.getStatusCode());
     }
 
@@ -86,6 +95,15 @@ public class GoRestAutomation {
             System.out.println("User deleted successfully.");
         } else {
             System.out.println("Failed to delete user.");
+ 
+            //Verify the user no longer exists
+            Response getUserResponse = RestAssured
+                    .given()
+                    .auth().oauth2(TOKEN)
+                    .get(BASE_URL + "/users/" + userId);
+            getUserResponse.then().statusCode(404);
+
+            
         }
     }
 }
